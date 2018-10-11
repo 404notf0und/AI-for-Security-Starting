@@ -1,5 +1,5 @@
 # Information-Security-Engineer-s-Interview-Guide
-## 404notfound的知识库，持续更新,剑指offer
+## 404notfound的知识库
 
 ## 基础知识<br>
 * [Python装饰器、迭代器、生成器原理及应用场景](https://www.jianshu.com/p/efaa19594cf4)<br>
