@@ -1,7 +1,19 @@
-# Information-Security-Engineer-s-Interview-Guide
+# Base-Learning-for-Security-Offers
 ## 404notfound的知识库
+- [基础语言类]
+  - [Java]
+  - [Python](#Python基础知识)
+- [四大科班基础课程类]
+  - [数据结构]
+  - [计算机网络]
+  - [操作系统]
+  - [计算机组成原理]
+- [机器学习基础类]
+  - [算法原理]
+  - [算法功能性]
+  - [算法比较]
 
-## 基础知识<br>
+## Python基础知识<br>
 * [Python装饰器、迭代器、生成器原理及应用场景](https://www.jianshu.com/p/efaa19594cf4)<br>
 * [Python进程、线程和协程的区别及应用场景](https://zhuanlan.zhihu.com/p/30980478)<br>
 * [Python扫描速度的优化到GIL锁的原理和优化](http://cenalulu.github.io/python/gil-in-python/)
