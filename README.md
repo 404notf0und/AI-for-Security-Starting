@@ -1,7 +1,7 @@
 # Base-Learning-for-Security-Offers
 ## 404notfound的知识库
 - [基础语言类]
-  - [Java]
+  - [Java](#Java基础知识)
   - [Python](#Python基础知识)
 - [四大科班基础课程类]
   - [数据结构]
@@ -19,6 +19,10 @@
   - [系统安全]
 - [安全算法类]
 
+# 基础语言类 #
+## Java基础知识 ##
+- [(Java中)堆和栈的区别](https://www.cnblogs.com/zyj-bozhou/p/6723863.html)
+联系数据结构中、操作系统中、C++中、Java中堆和栈的区别
 
 ## Python基础知识 ##
 * [Python装饰器、迭代器、生成器原理及应用场景](https://www.jianshu.com/p/efaa19594cf4)<br>
