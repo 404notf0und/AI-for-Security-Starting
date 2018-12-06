@@ -21,7 +21,7 @@
 
 # 基础语言类 #
 ## Java基础知识 ##
-- [(Java中)堆和栈的区别](https://www.cnblogs.com/zyj-bozhou/p/6723863.html)
+- [(Java中)堆和栈的区别](https://www.cnblogs.com/zyj-bozhou/p/6723863.html)<br>
 联系数据结构中、操作系统中、C++中、Java中堆和栈的区别
 
 ## Python基础知识 ##
@@ -32,7 +32,7 @@
 
 # 机器学习基础类 #
 ## 理论基础 ##
-- 怎么防止过拟合？
+- 怎么防止过拟合？<br>
 答：a. 增加样本（data bias or small data的缘故），移除噪声。
 b. 减少特征，保留重要的特征（可以用PCA等对特征进行降维）。
 c. 对样本进行采样（类似bagging）。就是建树的时候，不是把所有的样本都作为输入，而是选择一个子集。
