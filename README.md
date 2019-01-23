@@ -56,7 +56,7 @@
 ## 操作系统
 
 ### 知识体系
-![](https://i.imgur.com/F0lAjTx.png)
+![](https://i.imgur.com/dzK4H31.png)
 
 ### 常见问题
 - [堆和栈的区别？](https://www.zhihu.com/question/19729973)<br>
