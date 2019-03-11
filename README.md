@@ -40,9 +40,9 @@
 * Python中基本数据类型元组tuple、列表list、字典dict、集合set之间的区别？<br>
 答：列表的特点是：可重复，类型可不同，类型不同也是和数据最本质的区别了；元组：元组和列表在结构上没有什么区别，唯一的差异在于元组是只读的，不能修改，元组用“()”表示；字典定义了键和值之间一对一的关系，但它们是以无序的方式存储的，字典的值可以是任意数据类型，最大的价值是查询；集合是一个无序不重复元素集，基本功能包括关系测试和消除重复元素，和字典类似，也是一组不重复key的集合，但不存储value
 * [Python中list是怎么实现的？](http://www.laurentluce.com/posts/python-list-implementation/)<br>
-答：Python中底层的list是用C语言的结构体表示的，ob_item是用来表示保存元素的指针数组，allocated是ob_item预先分配的内存总容量，list的初始化，当初始化一个空的list的时候，非常重要的是要知道list申请内存空间allocated的大小和list实际存储元素所占空间的大小ob_size之间的关系，ob_size()的大小和len(L)是一样的，通常会看到allocated的值要比ob_size的值要大，这是为了避免每次有新元素加入list时都要调用realloc进行内存分配
+答：Python中底层的list是用C语言的结构体表示的，`ob_item`是用来表示保存元素的指针数组，allocated是`ob_item`预先分配的内存总容量，list的初始化，当初始化一个空的list的时候，非常重要的是要知道list申请内存空间allocated的大小和list实际存储元素所占空间的大小`ob_size`之间的关系，`ob_size()`的大小和len(L)是一样的，通常会看到allocated的值要比`ob_size`的值要大，这是为了避免每次有新元素加入list时都要调用realloc进行内存分配
 * [Python中list的get是怎么实现的？](http://www.laurentluce.com/posts/python-list-implementation/)<br>
-答：list常见的操作函数有append、insert、pop、remove。以append为例，追加一个整数append(1)看看内部发生了什么？调用了内部的C函数app1(),list_resize()会申请多余的空间以避免调用多次list_resize()函数，list增长的模型是0,4,8,16,25,46,58,72,88，开辟了四个内存空间来存放list中的元素，存放的第一个元素是1，剩余的内存空间申请了但是没有使用。pop函数调用了listpop()函数，list_resize()在函数listpop()内部被调用，如果这时ob_size小于内存空间allocated的一半，这时的内存空间将会缩小。
+答：list常见的操作函数有append、insert、pop、remove。以append为例，追加一个整数append(1)看看内部发生了什么？调用了内部的C函数app1(),`list_resize()`会申请多余的空间以避免调用多次`list_resize()`函数，list增长的模型是0,4,8,16,25,46,58,72,88，开辟了四个内存空间来存放list中的元素，存放的第一个元素是1，剩余的内存空间申请了但是没有使用。pop函数调用了listpop()函数，`list_resize()`在函数listpop()内部被调用，如果这时`ob_size`小于内存空间allocated的一半，这时的内存空间将会缩小。
 * [Python装饰器、迭代器、生成器原理及应用场景](https://www.jianshu.com/p/efaa19594cf4)<br>
 * [Python进程、线程和协程的区别及应用场景](https://zhuanlan.zhihu.com/p/30980478)
 * [Python扫描速度的优化到GIL锁的原理和优化](http://cenalulu.github.io/python/gil-in-python/)
