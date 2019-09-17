@@ -1,15 +1,21 @@
 # My-Security-Algorithm-Architecture
 ## 404notfound的安全算法知识体系，不断完善
+## 404notfound面试前必看一遍的知识库，不断完善
+
+最近更新日期：2019/09/17
+
 ![](https://i.imgur.com/uCVHmin.png)
 
 - [科班基础](科班基础)
   - [数据结构](#数据结构)
-  - [计算机网络]
   - [操作系统](#操作系统)
+  - [计算机网络](#计算机网络)
   - [计算机组成原理]
   - [基础语言](基础语言)
   	- [Java](#Java基础知识)
   	- [Python](#Python基础知识)
+  - [基础算法](#基础算法)
+        - [动态规划](#动态规划)
 - [网络空间安全](#网络空间安全)
   - [网络安全]
   - [应用安全](#应用安全)
@@ -31,30 +37,12 @@
   - [深度学习vs机器学习](深度学习VS机器学习)
 - [安全算法]
 
-# 基础语言 #
-## Java基础知识 ##
-- [(Java中)堆和栈的区别](https://www.cnblogs.com/zyj-bozhou/p/6723863.html)<br>
-联系数据结构中、操作系统中、C++中、Java中堆和栈的区别
-
-## Python基础知识 ##
-* Python中基本数据类型元组tuple、列表list、字典dict、集合set之间的区别？<br>
-答：列表的特点是：可重复，类型可不同，类型不同也是和数据最本质的区别了；元组：元组和列表在结构上没有什么区别，唯一的差异在于元组是只读的，不能修改，元组用“()”表示；字典定义了键和值之间一对一的关系，但它们是以无序的方式存储的，字典的值可以是任意数据类型，最大的价值是查询；集合是一个无序不重复元素集，基本功能包括关系测试和消除重复元素，和字典类似，也是一组不重复key的集合，但不存储value
-* [Python中list是怎么实现的？](http://www.laurentluce.com/posts/python-list-implementation/)<br>
-答：Python中底层的list是用C语言的结构体表示的，`ob_item`是用来表示保存元素的指针数组，allocated是`ob_item`预先分配的内存总容量，list的初始化，当初始化一个空的list的时候，非常重要的是要知道list申请内存空间allocated的大小和list实际存储元素所占空间的大小`ob_size`之间的关系，`ob_size()`的大小和len(L)是一样的，通常会看到allocated的值要比`ob_size`的值要大，这是为了避免每次有新元素加入list时都要调用realloc进行内存分配
-* [Python中list的get是怎么实现的？](http://www.laurentluce.com/posts/python-list-implementation/)<br>
-答：list常见的操作函数有append、insert、pop、remove。以append为例，追加一个整数append(1)看看内部发生了什么？调用了内部的C函数app1(),`list_resize()`会申请多余的空间以避免调用多次`list_resize()`函数，list增长的模型是0,4,8,16,25,46,58,72,88，开辟了四个内存空间来存放list中的元素，存放的第一个元素是1，剩余的内存空间申请了但是没有使用。pop函数调用了listpop()函数，`list_resize()`在函数listpop()内部被调用，如果这时`ob_size`小于内存空间allocated的一半，这时的内存空间将会缩小。
-* [Python装饰器、迭代器、生成器原理及应用场景](https://www.jianshu.com/p/efaa19594cf4)<br>
-* [Python进程、线程和协程的区别及应用场景](https://zhuanlan.zhihu.com/p/30980478)
-* [Python扫描速度的优化到GIL锁的原理和优化](http://cenalulu.github.io/python/gil-in-python/)
-* [masscan扫描和nmap扫描等端口探测的原理和方式](http://www.freebuf.com/articles/network/146087.html)<br>
-
 # 科班基础
 ## 数据结构
 - 堆和栈的区别<br>
 答：栈是一种具有后进先出性质的数据结构；堆是一种经过排序的树形数据结构，通常我们所说的堆的数据结构，是指二叉堆，堆的特点是根节点的值最小或最大，且根节点的两个子树也是一个堆，由于堆的这个特性，常用来实现优先队列，好比是书架，虽然书的摆放是有顺序的，但是我们想要取任意一本时，不必要像栈一样取出前面所有的书。
 
 ## 操作系统
-
 ### 知识体系
 ![](https://i.imgur.com/sPn05Gp.png)
 
@@ -89,6 +77,28 @@
 答：两者都是OSI模型中传输层协议，TCP提供可靠的通信传输，UDP则被常用于让广播和细节控制交给应用的通信传输。区别：TCP面向连接，UDP面向非连接，即发送前不需要建立连接；TCP提供可靠的服务（数据传输），UDP无法保证；TCP面向字节流，UDP面向报文；TCP数据传输慢，UDP数据传输快。
 - [TCP三次握手和四次挥手的流程]<br>
 答：TCP三次握手：第一次握手：建立连接，客户端发送连接请求报文段，将SYN位置为1，Sequence Number为x；然后客户端进入`SYN_SEND`状态，等待服务器确认。第二次握手：服务器端收到客户端的SYN报文段，需要对这个SYN报文段进行确认，设置Acknowledge Number为x+1（Sequence Number+1）；同时自己还要发送SYN请求信息，将SYN位置为1，Sequence Number为y；服务器端将上述所有信息放到一个报文段（即SYN+ACK报文段）中，一并发送给客户端，此时服务器进入`SYN_RECV`状态。第三次握手：客户端接收到SYN_ACK报文段。然后将Acknowledge Number设置为y+1，向服务器发送ACK报文段，这个报文段发送完毕之后，客户端和服务器端都进入`ESTABLISHED`状态，完成TCP三次握手。
+
+## 基础语言 ##
+### Java基础知识 ###
+- [(Java中)堆和栈的区别](https://www.cnblogs.com/zyj-bozhou/p/6723863.html)<br>
+联系数据结构中、操作系统中、C++中、Java中堆和栈的区别
+
+### Python基础知识 ###
+* Python中基本数据类型元组tuple、列表list、字典dict、集合set之间的区别？<br>
+答：列表的特点是：可重复，类型可不同，类型不同也是和数据最本质的区别了；元组：元组和列表在结构上没有什么区别，唯一的差异在于元组是只读的，不能修改，元组用“()”表示；字典定义了键和值之间一对一的关系，但它们是以无序的方式存储的，字典的值可以是任意数据类型，最大的价值是查询；集合是一个无序不重复元素集，基本功能包括关系测试和消除重复元素，和字典类似，也是一组不重复key的集合，但不存储value
+* [Python中list是怎么实现的？](http://www.laurentluce.com/posts/python-list-implementation/)<br>
+答：Python中底层的list是用C语言的结构体表示的，`ob_item`是用来表示保存元素的指针数组，allocated是`ob_item`预先分配的内存总容量，list的初始化，当初始化一个空的list的时候，非常重要的是要知道list申请内存空间allocated的大小和list实际存储元素所占空间的大小`ob_size`之间的关系，`ob_size()`的大小和len(L)是一样的，通常会看到allocated的值要比`ob_size`的值要大，这是为了避免每次有新元素加入list时都要调用realloc进行内存分配
+* [Python中list的get是怎么实现的？](http://www.laurentluce.com/posts/python-list-implementation/)<br>
+答：list常见的操作函数有append、insert、pop、remove。以append为例，追加一个整数append(1)看看内部发生了什么？调用了内部的C函数app1(),`list_resize()`会申请多余的空间以避免调用多次`list_resize()`函数，list增长的模型是0,4,8,16,25,46,58,72,88，开辟了四个内存空间来存放list中的元素，存放的第一个元素是1，剩余的内存空间申请了但是没有使用。pop函数调用了listpop()函数，`list_resize()`在函数listpop()内部被调用，如果这时`ob_size`小于内存空间allocated的一半，这时的内存空间将会缩小。
+* [Python装饰器、迭代器、生成器原理及应用场景](https://www.jianshu.com/p/efaa19594cf4)<br>
+* [Python进程、线程和协程的区别及应用场景](https://zhuanlan.zhihu.com/p/30980478)
+* [Python扫描速度的优化到GIL锁的原理和优化](http://cenalulu.github.io/python/gil-in-python/)
+* [masscan扫描和nmap扫描等端口探测的原理和方式](http://www.freebuf.com/articles/network/146087.html)<br>
+
+## 基础算法 ##
+### 动态规划 ###
+* [动态规划套路详解](https://zhuanlan.zhihu.com/p/78220312)<br>
+答：状态转移方程（如何穷举？）--->递归的暴力解法（自顶向下；穷举）--->带备忘录的递归解法（自顶向下；解决了重叠子问题；如何聪明的穷举？）--->非递归的动态规划解法（自底向上；如何聪明的穷举？）
 
 # 网络空间安全
 ## 应用安全
