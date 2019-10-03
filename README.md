@@ -131,6 +131,8 @@ d. 对特征进行采样。类似样本采样一样, 每次建树的时候，只
 答：L1、L2两种正则能不能把最优的x变成0，取决于原先的函数在0点处的导数。如果本来导数不为0，那么施加L2正则后导数依然不为0，最优的x也不会变成0；而施加L1正则时，只要正则项的系数C，大于原先函数在0点处的导数的绝对值，x=0就会变成一个极小值点。上面只分析了一个参数x，事实上L1正则会使许多参数的最优值变成0，这样模型就稀疏了。
 - [梯度消失、爆炸是怎么回事？](https://blog.csdn.net/qq_25737169/article/details/78847691)<br>
 答：梯度爆炸和梯度消失根源：深度神经网络和反向传播（sigmoid激活函数）。都是因为网络太深，网络权值更新不稳定造成的，本质上是因为梯度反向传播中的连乘效应。对于更普遍的梯度消失问题，可以考虑用ReLU激活函数取代sigmoid激活函数。另外，LSTM的结构设计也可以改善RNN中的梯度消失问题
+- [如何用测试集数据找到训练集数据中与其分布相似的数据？](https://www.zhihu.com/question/345360325)<br>
+答：kaggle比赛里常见的套路是**adversarial validation**，用来对train test数据集的分布做探测。**原理**：把数据来源于train还是test设置为待预测的目标label，label=1：数据来源于test数据集，label=0，数据来源于train数据集。train test拼接，然后训练模型M，用模型M对train数据集打分，observation分数越高，说明train上该observation越接近test数据集的分布。取出train上分数最高的N个observation即可。**目的**：**用来对train test数据集的分布做探测**，如果分类器不能识别成功train/test，那么可以说train/test有相同的分布；**处理bad case**；**缺点：over fitting in sample，降低了泛化性**，而最终的模型还是要用到测试集之外的。**实践经验：garbage in，garbage out，宁可花更大代价提升数据。**
 
 ## 算法原理 ##
 - xgb的原理
